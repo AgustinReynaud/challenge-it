@@ -1,0 +1,33 @@
+{
+  "company": {
+    "success": {
+      "create": "Compañía creada exitosamente.",
+      "recentAdhesions": "Adhesiones recientes recuperadas con éxito."
+    },
+    "error": {
+      "cuitExists": "La compañía con este CUIT ya existe.",
+      "notFound": "La compañía no existe."
+    }
+  },
+  "common": {
+    "error": "Ha ocurrido un error."
+  },
+  "transferences": {
+    "success": {
+      "create": "Transferencia creada exitosamente.",
+      "companiesWithTransferences": "Transferencias encontradas exitosamente."
+    }
+  },
+  "validation": {
+    "error": "Error de validación",
+    "joi": {
+      "requiredField": "Este campo es obligatorio.",
+      "mustBeString": "Este campo debe ser un texto.",
+      "invalidCuitFormat": "El CUIT debe seguir el formato XX-XXXXXXXX-X.",
+      "stringMin": "Este campo debe tener al menos 2 caracteres.",
+      "stringMax": "Este campo no debe superar los 255 caracteres.",
+      "invalidUuidFormat": "El formato del UUID no es válido.",
+      "amountGreaterThanZero": "El monto debe ser mayor a cero."
+    }
+  }
+}
