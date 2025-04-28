@@ -22,8 +22,7 @@ app.use(express.json());
 app.use(helmet());
 app.use(middleware.handle(i18next));
 
-// Configurar Swagger en el servidor
-swaggerDocs(app); // Usamos la función que configura Swagger
+swaggerDocs(app);
 
 app.use(appRoutes);
 
