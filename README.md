@@ -1,187 +1,221 @@
-⚡️ Challenge It 
-¡Bienvenido al proyecto! 🙌
+# ⚡️ Challenge It 
 
-🚀 Primeros Pasos
-Base de Datos
-Crea una base de datos en MySQL llamada companies_db.
+¡Bienvenido al proyecto! 🙌  
 
-Archivo de Configuración
-Crea un archivo .env tomando como referencia .env.example que encontrarás en el proyecto.
+---
 
-Rellena los valores de este archivo con la configuración adecuada.
+## 🚀 Primeros Pasos
 
-Levantar el Proyecto
-Asegúrate de tener Docker funcionando en tu máquina.
+1. **Base de Datos**
 
-En la terminal, corre el siguiente comando:
+   - Crea una base de datos en MySQL llamada `companies_db`.
 
-bash
-Copiar
-Editar
-docker-compose up --build
-Esto construirá el contenedor, levantará la aplicación y ejecutará automáticamente las migraciones de Sequelize para crear las tablas e índices necesarios.
+2. **Archivo de Configuración**
 
-📋 Descripción del Proyecto
-🎯 Objetivos del Challenge
-Implementar una API RESTful que permita gestionar empresas y transferencias bancarias.
+   - Crea un archivo `.env` tomando como referencia el archivo `.env.example` que encontrarás en el proyecto.
+   - Rellena los valores de este archivo con la configuración adecuada.
 
-Endpoints Requeridos
-Empresas que hicieron transferencias en el último mes.
+3. **Levantar el Proyecto**
 
-Empresas adheridas en el último mes.
+   - Asegúrate de tener **Docker** funcionando en tu máquina.
+   - En la terminal del proyecto, corre el siguiente comando:
 
-Crear nueva empresa.
+     ```bash
+     docker-compose up --build
+     ```
 
-Deseable
-Utilizar arquitectura hexagonal para garantizar un diseño limpio y escalable.
+   - Esto construirá el contenedor, levantará la aplicación y ejecutará automáticamente las migraciones de Sequelize.
 
-🛢️ Base de Datos
-Se utiliza MySQL como base de datos relacional.
+---
 
-Datos de la Empresa
-CUIT: Identificación fiscal.
+## 📋 Descripción
 
-Razón Social: Nombre de la empresa.
+### 🎯 Objetivos del Challenge
 
-Fecha de Adhesión: Fecha de alta.
+Implementar una **API RESTful** que permita gestionar **empresas** y **transferencias bancarias**.
 
-Datos de la Transferencia
-Importe: Monto.
+**Endpoints Requeridos:**
 
-ID Empresa: Referencia a la empresa.
+- **Empresas que hicieron transferencias**: Devuelve las empresas que realizaron transferencias en el último mes.
+- **Empresas adheridas**: Devuelve las empresas que se adhirieron en el último mes.
+- **Crear empresa**: Un endpoint para registrar una nueva empresa.
 
-Cuenta Débito: Cuenta de origen.
+**Deseable:**
 
-Cuenta Crédito: Cuenta destino.
+- Utilizar arquitectura hexagonal para garantizar un diseño limpio y escalable.
 
-✔️ Endpoints Implementados
-Companies
-POST /company - Crear Empresa.
+---
 
-GET /company/recent-adhesions - Listar Empresas Adheridas.
+## 🛢️ Base de Datos
 
-Transferences
-POST /transferences - Crear Transferencia.
+- Se utiliza una base de datos **MySQL** (relacional).
+- **Datos de la Empresa:**
+  - CUIT: Identificación fiscal de la empresa.
+  - Razón Social: Nombre oficial de la empresa.
+  - Fecha de Adhesión: Fecha de registro en el sistema.
+- **Datos de la Transferencia:**
+  - Importe: Monto de la transferencia.
+  - ID Empresa: Identificador de la empresa que realiza la transferencia.
+  - Cuenta Débito: Cuenta desde donde se debita el dinero.
+  - Cuenta Crédito: Cuenta destino.
 
-GET /transferences/recent-companies - Listar Empresas con Transferencias.
+---
 
-🔒 Validaciones
-Se utiliza Joi para validar el body de las solicitudes.
+## ✔️ Endpoints Implementados
 
-Manejo centralizado de errores para respuestas claras y consistentes.
+### Compañías:
 
-Validaciones de Empresas
-CUIT único y formato correcto (11 dígitos).
+- **Crear Empresa**: Permite crear nuevas compañías.
+- **Listar Empresas Adheridas**: Muestra las empresas que se han adherido en el último mes.
 
-Razón Social como string con longitud adecuada.
+### Transferencias:
 
-Validaciones de Transferencias
-Validar existencia de empresa.
+- **Crear Transferencia**: Registra una nueva transferencia de una empresa.
+- **Listar Empresas con Transferencias**: Muestra las empresas que realizaron transferencias en el último mes.
 
-Campos obligatorios completos.
+---
 
-Monto mayor que cero.
+## 🔒 Validaciones
 
-🌍 Internacionalización (i18n)
-Soporte para español e inglés.
+- **Middleware de Validación**: Se utiliza Joi para validar los datos enviados.
+- **Manejo de Errores**: Todos los errores se gestionan de forma centralizada.
 
-Cambia el idioma enviando el header:
+**En compañías:**
 
-http
-Copiar
-Editar
-Accept-Language: es
-o
+- Verificamos que el CUIT no esté ya registrado.
+- El CUIT debe tener formato correcto y 11 dígitos numéricos.
+- La Razón Social debe ser un string de longitud adecuada.
+- Ambos campos son requeridos.
 
-http
-Copiar
-Editar
-Accept-Language: en
-🗂️ Base de Datos y ORM
-MySQL como base de datos.
+**En transferencias:**
 
-Sequelize como ORM.
+- Validamos que la empresa exista.
+- Todos los campos son requeridos.
+- El importe no puede ser negativo.
 
-Migraciones automáticas para crear tablas e índices.
+---
 
-🏛 Arquitectura
-Arquitectura Hexagonal para mantener separación de responsabilidades, facilidad de extensión y testeo.
+## 🌍 Internacionalización (i18n)
 
-🧪 Testing
-Pruebas unitarias implementadas con Jest.
+- Soporte para mensajes en **español** e **inglés**.
+- Cambiar idioma enviando el header: `Accept-Language: es | en`
 
-🐳 Docker
-El proyecto está dockerizado para facilitar su despliegue en cualquier entorno.
+  ---
 
-🛠 Tecnologías y Herramientas Usadas
-Lenguaje: JavaScript
+## 🗂️ Base de Datos y ORM
 
-Backend: Node.js
+- Base de datos: **MySQL**.
+- ORM: **Sequelize**.
+- Migraciones para crear tablas e índices.
 
-Base de Datos: MySQL
+---
 
-ORM: Sequelize
+## 🏛️ Arquitectura
 
-Testing: Jest
+- Se implementó una **arquitectura hexagonal** para separar responsabilidades y facilitar la escalabilidad y pruebas.
 
-Linter: ESLint
+---
 
-Internacionalización: i18n
+## 🧪 Testing
 
-Contenedores: Docker
+- Se implementaron pruebas unitarias usando **Jest**.
 
-📫 Rutas para Probar en Postman
-Companies
-Crear Compañía
+---
 
-http
-Copiar
-Editar
-POST http://localhost:3000/company
-Body:
+## 🐳 Docker
 
-json
-Copiar
-Editar
-{
-  "cuit": "20-40757955-0",
-  "social_reason": "Rollos SE"
-}
-Listar Compañías Adheridas el Último Mes
+- El proyecto está completamente **dockerizado**, facilitando su despliegue.
 
-http
-Copiar
-Editar
-GET http://localhost:3000/company/recent-adhesions
-Transferences
-Crear Transferencia
+---
 
-http
-Copiar
-Editar
-POST http://localhost:3000/transferences
-Body:
+## 🛠️ Tecnologías y Herramientas Usadas
 
-json
-Copiar
-Editar
-{
-  "amount": 7000,
-  "company_id": "2e7b18bc-c915-43c3-b719-7424240e4c5c",
-  "debit_account": "234567890",
-  "credit_account": "0987654321"
-}
-Listar Empresas que Hicieron Transferencias el Último Mes
+- **Lenguaje**: JavaScript
+- **Backend**: Node.js
+- **Base de Datos**: MySQL
+- **ORM**: Sequelize
+- **Testing**: Jest
+- **Linter**: ESLint
+- **Internacionalización**: i18n
+- **Contenedores**: Docker
 
-http
-Copiar
-Editar
-GET http://localhost:3000/transferences/recent-companies
-🗂️ Relación de la Base de Datos
-Company (Empresa) y Transfer (Transferencia) tienen una relación 1:N:
+---
+## 📮 Rutas para Probar en Postman
 
-Una empresa puede tener muchas transferencias.
+### Companies:
 
-Cada transferencia pertenece a una única empresa.
+- **POST - Crear Compañía**
 
-La relación se maneja a través del campo company_id en la tabla Transfer.
+  - **Endpoint:**
+  
+    ```
+    http://localhost:3000/company
+    ```
+
+  - **Body:**
+
+    ```json
+    {
+      "cuit": "20-40757955-0",
+      "social_reason": "Rollos SE"
+    }
+    ```
+
+- **GET - Listar Compañías Adheridas el Último Mes**
+
+  - **Endpoint:**
+  
+    ```
+    http://localhost:3000/company/recent-adhesions
+    ```
+
+---
+
+### Transferencias:
+
+- **POST - Crear Transferencia**
+
+  - **Endpoint:**
+  
+    ```
+    http://localhost:3000/transferences
+    ```
+
+  - **Body:**
+
+    ```json
+    {
+      "amount": -7000,
+      "company_id": "2e7b18bc-c915-43c3-b719-7424240e4c5c",
+      "debit_account": "234567890",
+      "credit_account": "0987654321"
+    }
+    ```
+
+- **GET - Listar Compañías que Hicieron Transferencias el Último Mes**
+
+  - **Endpoint:**
+  
+    ```
+    http://localhost:3000/transferences/recent-companies
+    ```
+
+---
+
+## 🔗 Relación de la Base de Datos
+
+- **Relación 1:N**
+
+  - Una compañía puede tener **muchas transferencias**.
+
+- **Llave foránea**
+
+  - El campo `company_id` en la tabla `Transfer` se refiere al `id` de la tabla `Company`.
+
+**Detalles:**
+
+- Una compañía tiene varias transferencias asociadas.
+- Se utiliza la relación `hasMany` desde el modelo `Company` hacia el modelo `Transfer`.
+
+
+
