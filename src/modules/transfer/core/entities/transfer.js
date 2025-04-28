@@ -29,9 +29,6 @@ export class Transfer {
     credit_account,
     created_at,
   }) {
-    if (amount == null || !company_id || !debit_account || !credit_account) {
-      throw new Error("Missing required fields to create a Transfer");
-    }
     return new Transfer({
       id,
       amount,

@@ -3,6 +3,7 @@ import { appRoutes } from "./routes/index.js";
 import helmet from "helmet";
 import i18next from "i18next";
 import * as middleware from "i18next-http-middleware";
+import { swaggerDocs } from "./config/swagger.config.js";
 import I18NexFsBackend from "i18next-fs-backend";
 
 i18next
@@ -14,10 +15,16 @@ i18next
       loadPath: "./locales/{{lng}}/translation.json",
     },
   });
+
 const app = express();
+
 app.use(express.json());
 app.use(helmet());
 app.use(middleware.handle(i18next));
 
+// Configurar Swagger en el servidor
+swaggerDocs(app); // Usamos la función que configura Swagger
+
 app.use(appRoutes);
+
 export { app };
