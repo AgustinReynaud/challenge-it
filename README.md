@@ -1,4 +1,4 @@
-⚡️ Challenge It Patagonia
+⚡️ Challenge It 
 ¡Bienvenido al proyecto! 🙌
 Este es un reto para la empresa It Patagonia, creado para demostrar mis habilidades como desarrollador.
 A continuación te cuento todo lo que necesitas saber para poner en marcha este proyecto.
